@@ -37,11 +37,14 @@ app.get('/', function(req, res) {
 });
 
 app.get('/data', function(req, res) {
-	conn.query('SELECT * FROM assignments', function(error, results, fields) {
-		var a = new models.assignment(results[0].title, results[0].due_date, results[0].finished);
-		var return_string = "Title: " + a.title + " | Due Date: " + a.due_date + " | Finished?: " + a.finished;
+	conn.query('SELECT title, due_date, finished FROM assignments', function(error, results, fields) {
+		var i, j = results.length;
+		var a = [];
+		for (i = 0; i < j; i++) {
+			a.push(new models.assignment(results[i].title, results[i].due_date, results[i].finished));
+		}
 		
-		res.send(results);
+		res.send(a);
 	});
 });
 
