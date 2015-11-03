@@ -1,10 +1,18 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Here I am!!</title>
-	</head>
-	<body>
-		<h1>This is a page.</h1>
-		<p>Here ya go.</p>
-	</body>
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<title>My HTML File</title>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+	<script src="controllers.js"></script>
+</head>
+<body ng-controller="mainController">
+	<div class="container">
+		<div class="checkbox" ng-repeat="assignment in assignments">
+			<label>{{assignment.title}}</label>
+		</div>
+	</div>
+
+</body>
 </html>

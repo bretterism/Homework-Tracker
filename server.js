@@ -41,7 +41,7 @@ app.get('/data', function(req, res) {
 		var a = new models.assignment(results[0].title, results[0].due_date, results[0].finished);
 		var return_string = "Title: " + a.title + " | Due Date: " + a.due_date + " | Finished?: " + a.finished;
 		
-		res.send(return_string);
+		res.send(results);
 	});
 });
 
