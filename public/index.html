@@ -9,19 +9,52 @@
 </head>
 <body ng-controller="mainController">
 	<div class="container">
-		<table class="table table-striped">
-			<tr>
-				<th>Homework Title</th>
-				<th>Due Date</th>
-				<th>Finished?</th>
-			</tr>
-			<tr ng-repeat="assignment in assignments">
-				<td>{{assignment.title}}</td>
-				<td>{{assignment.due_date}}</td>
-				<td>{{assignment.finished}}</td>
-			</tr>
-		</table>
+		<div class="row">
+			<div class="col-sm-offset-2">
+				<div class="col-sm-8">
+					<h3>Homework Tracker</h3>
+					<table class="table table-striped">
+						<tr>
+							<th>Homework Title</th>
+							<th>Due Date</th>
+							<th>Finished?</th>
+						</tr>
+						<tr ng-repeat="assignment in assignments">
+							<td>{{assignment.title}}</td>
+							<td>{{assignment.due_date}}</td>
+							<td>{{assignment.finished}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-offset-3">
+				<form>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<input name="title" type="textbox" class="form-control" placeholder="Homework Title">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<input name="due_date" type="date" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<button type="submit" class="btn btn-success btn-block">Submit</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-
 </body>
 </html>
