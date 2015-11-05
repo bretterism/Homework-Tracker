@@ -12,7 +12,7 @@ function mainController($scope, $http) {
 				var item = data[i];
 				assignments.push({
 					title: item.title,
-					due_date: item.due_date,
+					due_date: moment(item.due_date).format('MMM DD, YYYY'),
 					finished: item.finished ? "Done" : "Not yet"
 				});
 			}
