@@ -8,6 +8,7 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 var path = require('path');
+var bodyParser = require('body-parser');
 var models = require('./models');
 
 var conn = mysql.createConnection({
@@ -17,6 +18,8 @@ var conn = mysql.createConnection({
 	database : 'homework_tracker_db'
 });
 
+
+app.use(bodyParser.json());  
 // Storing static html files in public folder.
 app.use(express.static(__dirname + '/public'));
 
@@ -46,6 +49,10 @@ app.get('/data', function(req, res) {
 		
 		res.send(a);
 	});
+});
+
+app.post('/data', function(req, res) {
+	console.log(req.body);
 });
 
 app.listen(3000);

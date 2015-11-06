@@ -21,4 +21,11 @@ function mainController($scope, $http) {
 		.error(function(data) {
 			console.log('ERRRORORRR ' + data);
 		});
+
+	$scope.processForm = function() {
+		$http.post('/data', $scope.formData)
+			.success(function(data) {
+				// sanitize here.
+			});
+	};
 }
