@@ -53,6 +53,16 @@ app.get('/data', function(req, res) {
 
 app.post('/data', function(req, res) {
 	console.log(req.body);
+	var vals = { title: req.body.title, 
+				 due_date: req.body.due_date, 
+				 finished: false
+			   };
+
+	var query = conn.query('INSERT INTO assignments SET ?', vals, function(err, result) {
+		if (err) {
+			console.log('Mysql: Insert post data failed.');
+		}
+	});
 });
 
 app.listen(3000);
