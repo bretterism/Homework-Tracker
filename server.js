@@ -9,19 +9,15 @@ var app = express();
 var mysql = require('mysql');
 var path = require('path');
 var bodyParser = require('body-parser');
-var models = require('./models');
-
-var conn = mysql.createConnection({
-	host : 'localhost',
-	user : 'hw_user',
-	password : 'pass',
-	database : 'homework_tracker_db'
-});
-
+var models = require('./app/models/assignments');
+var database_conns = require('./app/database/conn');
 
 app.use(bodyParser.json());  
 // Storing static html files in public folder.
 app.use(express.static(__dirname + '/public'));
+
+// Database Connections
+var conn = mysql.createConnection(database_conns);
 
 conn.connect(function(err){
 	if (err) {
@@ -31,8 +27,6 @@ conn.connect(function(err){
 
 	console.log('mysql: connected as id ' + conn.threadId);
 });
-
-//app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
 	res.sendFile('index.html');
