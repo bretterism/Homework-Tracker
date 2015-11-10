@@ -12,9 +12,9 @@ angular.module('homeworkTracker')
 			},
 			create : function(assignmentData) {
 				return $http.post('/data', assignmentData);
-			}//,
-			//delete : function(id) {
-
-			//}
+			},
+			finish: function(assignment_id) {
+				return $http.put('/data/' + assignment_id);
+			}
 		}
 	});

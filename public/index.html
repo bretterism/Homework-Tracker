@@ -51,7 +51,7 @@
 							<th>Due Date</th>
 							<th>Finished?</th>
 						</tr>
-						<tr ng-repeat="assignment in assignments">
+						<tr ng-repeat="assignment in assignments" ng-click="finishAssignment(assignment.id)">
 							<td>{{assignment.title}}</td>
 							<td>{{assignment.due_date}}</td>
 							<td>{{assignment.finished}}</td>

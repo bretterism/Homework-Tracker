@@ -1,5 +1,6 @@
 var Assignment = require('./models/assignments');
 var models = require('./models/assignments');
+var queries = require('./database/queries');
 
 
 module.exports = function(app, conn) {
@@ -9,14 +10,14 @@ module.exports = function(app, conn) {
 	});
 
 	app.get('/data', function(req, res) {
-		conn.query('SELECT title, due_date, finished FROM assignments', function(error, results, fields) {
+		conn.query(queries.selectAssignments, function(error, results, fields) {
 			var i, j = results.length;
 			var a = [];
 			for (i = 0; i < j; i++) {
-				a.push(new models.assignment(results[i].title, results[i].due_date, results[i].finished));
+				a.push(new models.assignment(results[i].id, results[i].title, results[i].due_date, results[i].finished));
 			}
-			
-			res.send(a);
+
+			res.send(models.formatAssignments(a));
 		});
 	});
 
@@ -26,20 +27,36 @@ module.exports = function(app, conn) {
 						 finished: false
 					   };
 
-			var query = conn.query('INSERT INTO assignments SET ?', vals, function(err, result) {
+			var query = conn.query(queries.insertAssignment, vals, function(err, result) {
 				if (err) {
 					console.log('Mysql: Insert post data failed.');
 				}
 			});
 
-			conn.query('SELECT title, due_date, finished FROM assignments', function(error, results, fields) {
+			conn.query(queries.selectAssignments, function(error, results, fields) {
+				var i, j = results.length;
+				var a = [];
+				for (i = 0; i < j; i++) {
+					a.push(new models.assignment(results[i].id, results[i].title, results[i].due_date, results[i].finished));
+				}
+				
+				res.send(models.formatAssignments(a));
+			});
+		});
+
+	app.put('/data/:assignment_id', function(req, res) {
+		var assignment_id = req.params.assignment_id;
+
+		conn.query(queries.finishedAssignment, assignment_id);
+
+		conn.query(queries.selectAssignments, function(error, results, fields) {
 			var i, j = results.length;
 			var a = [];
 			for (i = 0; i < j; i++) {
-				a.push(new models.assignment(results[i].title, results[i].due_date, results[i].finished));
+				a.push(new models.assignment(results[i].id, results[i].title, results[i].due_date, results[i].finished));
 			}
 			
-			res.send(a);
+			res.send(models.formatAssignments(a));
 		});
-		});
+	});
 };
