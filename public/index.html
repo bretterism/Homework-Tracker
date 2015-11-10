@@ -1,13 +1,16 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="homeworkTracker">
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-	<title>My HTML File</title>
+	<title>Homework Tracker</title>
+	
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script><!-- load moment -->
 
-	<script src="controllers.js"></script>
+	<script src="js/core.js"></script> <!-- load main app -->
+	<script src="js/services/assignments_api.js"></script><!-- load api services -->
+	<script src="js/controllers/main.js"></script> <!-- load main controller -->
 </head>
 <body ng-controller="mainController">
 	<div class="container">
@@ -32,7 +35,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-offset-3">
-				<form ng-submit="processForm()">
+				<form>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-6">
@@ -50,7 +53,7 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-6">
-								<button type="submit" class="btn btn-success btn-block">Submit</button>
+								<button type="submit" class="btn btn-success btn-block" ng-click="createAssignment()">Submit</button>
 							</div>
 						</div>
 					</div>
@@ -58,8 +61,5 @@
 			</div>
 		</div>
 	</div>
-	<pre>
-		{{formData}}
-	</pre>
 </body>
 </html>

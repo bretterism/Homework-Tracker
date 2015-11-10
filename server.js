@@ -9,7 +9,6 @@ var app = express();
 var mysql = require('mysql');
 var path = require('path');
 var bodyParser = require('body-parser');
-var models = require('./app/models/assignments');
 var database_conns = require('./app/database/conn');
 
 app.use(bodyParser.json());  
@@ -28,36 +27,8 @@ conn.connect(function(err){
 	console.log('mysql: connected as id ' + conn.threadId);
 });
 
-app.get('/', function(req, res) {
-	res.sendFile('index.html');
-	// It will find and locate index.html from public folder
-});
-
-app.get('/data', function(req, res) {
-	conn.query('SELECT title, due_date, finished FROM assignments', function(error, results, fields) {
-		var i, j = results.length;
-		var a = [];
-		for (i = 0; i < j; i++) {
-			a.push(new models.assignment(results[i].title, results[i].due_date, results[i].finished));
-		}
-		
-		res.send(a);
-	});
-});
-
-app.post('/data', function(req, res) {
-	console.log(req.body);
-	var vals = { title: req.body.title, 
-				 due_date: req.body.due_date, 
-				 finished: false
-			   };
-
-	var query = conn.query('INSERT INTO assignments SET ?', vals, function(err, result) {
-		if (err) {
-			console.log('Mysql: Insert post data failed.');
-		}
-	});
-});
+// Load the routes
+require('./app/routes')(app, conn);
 
 app.listen(3000);
 console.log('Listening on port 3000.');
