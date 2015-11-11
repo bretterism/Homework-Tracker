@@ -47,7 +47,7 @@ module.exports = function(app, conn) {
 	app.put('/data/:assignment_id', function(req, res) {
 		var assignment_id = req.params.assignment_id;
 
-		conn.query(queries.finishedAssignment, assignment_id);
+		conn.query(queries.toggleAssignment, assignment_id);
 
 		conn.query(queries.selectAssignments, function(error, results, fields) {
 			var i, j = results.length;

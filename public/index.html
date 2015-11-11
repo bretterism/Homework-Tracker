@@ -50,12 +50,14 @@
 						<tr>
 							<th>Homework Title</th>
 							<th>Due Date</th>
-							<th>Finished?</th>
 						</tr>
-						<tr class="cursor-row" ng-repeat="assignment in assignments" ng-click="finishAssignment(assignment.id)">
+						<tr class="cursor-row" ng-repeat="assignment in assignments" ng-click="toggleAssignment(assignment.id)">
 							<td>{{assignment.title}}</td>
 							<td>{{assignment.due_date}}</td>
-							<td>{{assignment.finished}}</td>
+						</tr>
+						<tr class="cursor-row finished-text" ng-repeat="finishedAssignment in finishedAssignments" ng-click="toggleAssignment(finishedAssignment.id)">
+							<td>{{finishedAssignment.title}}</td>
+							<td>{{finishedAssignment.due_date}}</td>
 						</tr>
 					</table>
 				</div>

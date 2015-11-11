@@ -9,8 +9,8 @@ module.exports = {
 	insertAssignment: 
 		'INSERT INTO assignments SET ?',
 
-	finishedAssignment:
+	toggleAssignment:
 		'UPDATE assignments ' +
-		'SET finished = 1 ' +
-		'WHERE id = ?'
+		'SET finished = finished ^ 1 ' +
+	  	'WHERE id = ?'
 };

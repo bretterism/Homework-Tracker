@@ -4,17 +4,18 @@
  *	with a set of promises.
  */
 
-angular.module('homeworkTracker')
-	.factory('Assignments', function($http){
-		return {
-			get : function() {
-				return $http.get('/data');
-			},
-			create : function(assignmentData) {
-				return $http.post('/data', assignmentData);
-			},
-			finish: function(assignment_id) {
-				return $http.put('/data/' + assignment_id);
-			}
+var app = angular.module('homeworkTracker');
+
+app.factory('Assignments', function($http){
+	return {
+		get : function() {
+			return $http.get('/data');
+		},
+		create : function(assignmentData) {
+			return $http.post('/data', assignmentData);
+		},
+		finish: function(assignment_id) {
+			return $http.put('/data/' + assignment_id);
 		}
-	});
+	}
+});

@@ -1,3 +1,7 @@
 .cursor-row {
 	cursor: pointer;
 }
+
+.finished-text {
+	color: #939393;
+}
