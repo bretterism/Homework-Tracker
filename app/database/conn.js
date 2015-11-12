@@ -9,8 +9,9 @@ module.exports = {
 	// user : 'hw_user',
 	// password : 'pass',
 	// database : 'homework_tracker_db'
-	host     : process.env.RDS_HOSTNAME,
-	user     : process.env.RDS_USERNAME,
-	password : process.env.RDS_PASSWORD,
-	port     : process.env.RDS_PORT
+	host     : 'aatzr66md35cr6.c8t6xhid1m4s.us-west-2.rds.amazonaws.com',
+	user     : 'rds_user',
+	password : 'rds_pass123',
+	database : 'homework_tracker_db',
+	port     : '3306'
 };

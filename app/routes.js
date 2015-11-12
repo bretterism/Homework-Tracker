@@ -9,7 +9,7 @@ module.exports = function(app, conn) {
 		// It will find and locate index.html from public folder
 	});
 
-	app.get('/data', function(req, res) {
+	app.get('/data/', function(req, res) {
 		conn.query(queries.selectAssignments, function(error, results, fields) {
 			var i, j = results.length;
 			var a = [];
@@ -21,7 +21,7 @@ module.exports = function(app, conn) {
 		});
 	});
 
-	app.post('/data', function(req, res) {
+	app.post('/data/', function(req, res) {
 			var vals = { title: req.body.title, 
 						 due_date: req.body.due_date, 
 						 finished: false
@@ -44,7 +44,7 @@ module.exports = function(app, conn) {
 			});
 		});
 
-	app.put('/data/:assignment_id', function(req, res) {
+	app.put('/data/:assignment_id/', function(req, res) {
 		var assignment_id = req.params.assignment_id;
 
 		conn.query(queries.toggleAssignment, assignment_id);
