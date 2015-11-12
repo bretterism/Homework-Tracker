@@ -5,8 +5,12 @@
  */
 
 module.exports = {
-	host : 'localhost',
-	user : 'hw_user',
-	password : 'pass',
-	database : 'homework_tracker_db'
+	// host : 'localhost',
+	// user : 'hw_user',
+	// password : 'pass',
+	// database : 'homework_tracker_db'
+	host     : process.env.RDS_HOSTNAME,
+	user     : process.env.RDS_USERNAME,
+	password : process.env.RDS_PASSWORD,
+	port     : process.env.RDS_PORT
 };
