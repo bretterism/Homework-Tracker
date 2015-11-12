@@ -8,5 +8,8 @@
     "mysql" : "latest",
     "moment" : "latest",
     "body-parser" : "latest"
+  },
+  "scripts" : {
+    "start" : "node server.js"
   }
 }
